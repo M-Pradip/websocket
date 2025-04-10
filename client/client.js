@@ -1,5 +1,11 @@
-const socket = new WebSocket("ws://localhost:3000");
+// Create a dynamic WebSocket URL based on environment
+const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+const host =
+  window.location.hostname === "localhost"
+    ? "localhost:3000"
+    : window.location.host;
 
+const socket = new WebSocket(`${protocol}//${host}`);
 const messagesList = document.getElementById("messages");
 const messageInput = document.getElementById("messageInput");
 const sendButton = document.getElementById("sendButton");
